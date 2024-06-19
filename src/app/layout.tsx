@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
+import { Suspense } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 // Navbar
@@ -27,7 +28,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Navbar />
+          <Suspense>
+            <Navbar />
+          </Suspense>
           {children}
         </body>
       </html>
