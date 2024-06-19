@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Oswald } from 'next/font/google';
+import { Inter, Montserrat, Oswald } from 'next/font/google';
 import './globals.css';
 import {
   ClerkProvider,
@@ -8,7 +8,10 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
-const oswald = Oswald({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
+
+// Navbar
+import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'DocsQR',
@@ -23,17 +26,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={oswald.className}>
-          {children}
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+        <body className={inter.className}>
+          <Navbar />
           {children}
         </body>
       </html>
     </ClerkProvider>
   );
 }
+
