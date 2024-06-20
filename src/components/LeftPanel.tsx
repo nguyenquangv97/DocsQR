@@ -15,7 +15,7 @@ const LeftPanel = () => {
         Effortlessly convert any PDF into a secure QR code with just a click.
         Simplify sharing and streamline access across devices instantly!
       </p>
-      <Button className="mt-10 bg-blue-1 text-xl shadow-lg h-13 rounded-lg">
+      <Button className="mt-10 border border-blue-1 bg-blue-1 text-xl shadow-lg h-13 rounded-lg">
         Get Started <ArrowRight className="ml-1 h-5 w-5" />{' '}
       </Button>
     </div>
