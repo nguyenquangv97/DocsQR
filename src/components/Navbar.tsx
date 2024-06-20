@@ -13,16 +13,15 @@ const Navbar = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   return (
-    <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full bg-white/75 backdrop-blur-lg transition-all">
+    <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between">
           <div className="flex justify-between items-center">
-            <Link href="/" className="flex z-40 font-semibold">
+            <Link href="/" className="flex z-40 font-semibold text-xl">
               DocsQR
-
             </Link>
             <Link href="/pricing">
-              <Button variant="ghost" className="mx-20">
+              <Button variant="ghost" className="mx-20 text-md font-light">
                 Pricing
               </Button>
             </Link>
@@ -36,7 +35,6 @@ const Navbar = () => {
               <SignUpButton>
                 <Button variant="ghost">Sign Up</Button>
               </SignUpButton>
-
               <SignInButton>
                 <Button
                   className={buttonVariants({
