@@ -1,17 +1,22 @@
 'use client';
-import React from 'react';
-import { Button, buttonVariants } from './ui/button';
-
+// components
+import Image from 'next/image';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import Link from 'next/link';
-import { SignInButton, SignUpButton } from '@clerk/nextjs';
-import { useUser } from '@clerk/nextjs';
-import Image from 'next/image';
-import { Avatar } from './ui/avatar';
 import UserAccountNav from './UserAccountNav';
-const Navbar = () => {
-  const { isSignedIn, user, isLoaded } = useUser();
 
+// shadcn components
+import { Button, buttonVariants } from './ui/button';
+import { Avatar } from './ui/avatar';
+
+// authentication
+import { useConvexAuth } from 'convex/react';
+import { useUser } from '@clerk/clerk-react';
+import { SignInButton, SignUpButton } from '@clerk/nextjs';
+
+const Navbar = () => {
+  const { isLoading, isAuthenticated } = useConvexAuth();
+  const {user} = useUser();
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -28,8 +33,16 @@ const Navbar = () => {
           </div>
 
           {/* TODO: mobile nav */}
-          {isSignedIn ? (
-            <UserAccountNav name={(user.username || user.fullName) ? user.username || user.fullName : 'Your Account'} email={user.emailAddresses[0].emailAddress} imgUrl={user.imageUrl} /> 
+          {isAuthenticated ? (
+            <UserAccountNav
+              name={
+                user!.username || user!.fullName
+                  ? user!.username || user!.fullName
+                  : 'Your Account'
+              }
+              email={user!.emailAddresses[0].emailAddress}
+              imgUrl={user!.imageUrl}
+            />
           ) : (
             <div className="flex justify-between items-center space-x-4 sm:flex">
               <SignUpButton>
