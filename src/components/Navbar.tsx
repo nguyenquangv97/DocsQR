@@ -13,10 +13,11 @@ import { Avatar } from './ui/avatar';
 import { useConvexAuth } from 'convex/react';
 import { useUser } from '@clerk/clerk-react';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { Loader2 } from 'lucide-react';
 
 const Navbar = () => {
   const { isLoading, isAuthenticated } = useConvexAuth();
-  const {user} = useUser();
+  const { user } = useUser();
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -33,7 +34,10 @@ const Navbar = () => {
           </div>
 
           {/* TODO: mobile nav */}
-          {isAuthenticated ? (
+
+          {isLoading ? (
+            <Loader2 className="w-6 h-6 animate-spin" />
+          ) : isAuthenticated ? (
             <UserAccountNav
               name={
                 user!.username || user!.fullName
