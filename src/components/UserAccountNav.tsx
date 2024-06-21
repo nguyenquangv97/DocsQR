@@ -14,11 +14,11 @@ import { Avatar, AvatarFallback } from './ui/avatar';
 import Image from 'next/image';
 import { Icons } from './Icons';
 import Link from 'next/link';
-import { SignOutButton } from '@clerk/nextjs';
+import { SignInButton, SignOutButton, useAuth, useClerk } from '@clerk/nextjs';
+import { cn } from '@/lib/utils';
 const UserAccountNav = ({ name, email, imgUrl }: UserAccountNavProps) => {
-  {
-    console.log(imgUrl);
-  }
+  const { sessionId } = useAuth();
+  const { signOut } = useClerk();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -55,28 +55,21 @@ const UserAccountNav = ({ name, email, imgUrl }: UserAccountNavProps) => {
         </div>
 
         <DropdownMenuSeparator />
-
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
-
-        {/* <DropdownMenuItem asChild>
-          {subscriptionPlan?.isSubscribed ? (
-            <Link href="/dashboard/billing">Manage Subscription</Link>
-          ) : (
-            <Link href="/pricing">
-              Upgrade <Gem className="text-blue-600 h-4 w-4 ml-1.5" />
-            </Link>
-          )}
-        </DropdownMenuItem> */}
-
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="cursor-pointer">
-          <SignOutButton>
-            <Button className="p-0 text-red-1" variant="ghost">Sign Out</Button>
-          </SignOutButton>
-        </DropdownMenuItem>
+        <Button
+          className='p-0 text-red-1 flex justify-center items-center w-full'
+          variant="ghost"
+          onClick={() => {
+            signOut({ redirectUrl: '/' });
+          }}
+        >
+          Sign Out
+        </Button>
+        {/* </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );
