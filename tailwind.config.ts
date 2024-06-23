@@ -33,6 +33,22 @@ const config = {
         pink: {
           1: '#E5B2CA',
         },
+        green: {
+          1: '#00BFB2',
+          2: '#17A398',
+          3: '#B8C480'
+        },
+        black: {
+          1: '#33312E'
+        },
+        orange: {
+          1: '#ee6c4d',
+          2: '#f38d68'
+        },
+        gray: {
+          1: '#DEE5E5',
+
+        },
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

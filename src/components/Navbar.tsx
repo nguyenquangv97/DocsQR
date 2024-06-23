@@ -53,12 +53,7 @@ const Navbar = () => {
                 <Button variant="ghost">Sign Up</Button>
               </SignUpButton>
               <SignInButton>
-                <Button
-                  className={buttonVariants({
-                    variant: 'ghost',
-                    size: 'sm',
-                  })}
-                >
+                <Button className="bg-blue-1">
                   Sign In
                 </Button>
               </SignInButton>
