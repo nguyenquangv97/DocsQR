@@ -3,6 +3,8 @@ import { Inter, Montserrat, Oswald } from 'next/font/google';
 import './globals.css';
 import ConvexClerkProvider from './providers/ConvexClerkProvider';
 import { Suspense } from 'react';
+import { Toaster } from '@/components/ui/toaster';
+
 const inter = Inter({ subsets: ['latin'] });
 
 // Navbar
@@ -26,9 +28,9 @@ export default function RootLayout({
             <Navbar />
           </Suspense>
           {children}
+          <Toaster />
         </body>
       </html>
     </ConvexClerkProvider>
   );
 }
-

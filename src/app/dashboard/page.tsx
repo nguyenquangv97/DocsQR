@@ -1,18 +1,20 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import React from 'react';
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import UploadImage from '@/components/UploadImage';
+import UploadDocument from '@/components/UploadDocument';
+import { Card, CardContent } from '@/components/ui/card';
+import CreateNewDocument from '../../components/CreateDocument';
 
 const Dashboard = () => {
-
-
   return (
-    <MaxWidthWrapper>
-      <div className="py-20">Dashboard</div>
-      <UploadImage />
-    </MaxWidthWrapper>
-  );
+    <div className="flex justify-center items-center w-full h-full border border-red-1">
+
+      <CreateNewDocument />
+    </div>
+  )
+  
+  
 };
 
 export default Dashboard;

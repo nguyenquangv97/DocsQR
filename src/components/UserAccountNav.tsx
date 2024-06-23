@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { UserAccountNavProps } from '@/types';
 
 import {
@@ -16,6 +16,9 @@ import { Icons } from './Icons';
 import Link from 'next/link';
 import { SignInButton, SignOutButton, useAuth, useClerk } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
+
+
+
 const UserAccountNav = ({ name, email, imgUrl }: UserAccountNavProps) => {
   const { sessionId } = useAuth();
   const { signOut } = useClerk();
@@ -59,7 +62,7 @@ const UserAccountNav = ({ name, email, imgUrl }: UserAccountNavProps) => {
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-
+  
         <Button
           className='p-0 text-red-1 flex justify-center items-center w-full'
           variant="ghost"
