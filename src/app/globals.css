@@ -57,3 +57,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .left_sidebar {
+    @apply sticky left-0 top-0 flex w-fit flex-col justify-start items-center pt-8 shadow-lg text-gray-700 max-md:hidden lg:w-[300px] lg:px-8;
+  }
+}

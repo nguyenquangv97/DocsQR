@@ -1,20 +1,24 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import UploadDocument from '@/components/UploadDocument';
-import { Card, CardContent } from '@/components/ui/card';
 import CreateNewDocument from '../../components/CreateDocument';
+import LeftSideBar from './LeftSideBar';
 
 const Dashboard = () => {
-  return (
-    <div className="flex justify-center items-center w-full h-full border border-red-1">
+  // TODO: fetch all documents
 
-      <CreateNewDocument />
+  return (
+    <div className="relative flex flex-col border border-red-400">
+      <main className="relative flex">
+        <LeftSideBar />
+        <section className="flex flex-1 flex-col p-4 sm:px-14">
+          <div className="mt-8 flex flex-col items-start justify-between gap-4 border-b border-gray-200 pb-5 sm:flex-row sm:items-center sm:gap-0">
+            <h1 className="mb-3 font-bold text-5xl text-gray-900">My Files</h1>
+          </div>
+          <div>
+            <CreateNewDocument />
+          </div>
+        </section>
+      </main>
     </div>
-  )
-  
-  
+  );
 };
 
 export default Dashboard;
