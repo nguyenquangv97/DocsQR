@@ -1,5 +1,5 @@
 import { ConvexError, v } from 'convex/values';
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 
 export const generateUploadUrl = mutation({
   args: {
@@ -35,7 +35,7 @@ export const createDocument = mutation({
       .query('users')
       .filter((q) => q.eq(q.field('email'), identity.email))
       .collect();
-    
+
     if (user.length === 0) {
       throw new ConvexError('user not found');
     }
@@ -47,5 +47,31 @@ export const createDocument = mutation({
       documentStorageId: args.documentStorageId,
       documentUrl: args.documentUrl,
     });
+  },
+});
+
+export const getDocuments = query({
+  handler: async (ctx) => {
+    // Verify that user is authenticated
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError('unauthorized');
+    }
+
+    // get the user
+    const user = await ctx.db
+      .query('users')
+      .filter((q) => q.eq(q.field('email'), identity.email))
+      .collect();
+
+    if (user.length === 0) {
+      throw new ConvexError('user not found');
+    }
+
+    // Get all documents for the user
+    return await ctx.db
+      .query('documents')
+      .filter((q) => q.eq(q.field('user'), user[0]._id))
+      .collect();
   },
 });

@@ -1,8 +1,11 @@
+import { useQuery } from 'convex/react';
 import CreateNewDocument from '../../components/CreateDocument';
 import LeftSideBar from './LeftSideBar';
-
+import { api } from '../../../convex/_generated/api';
+import DocumentCard from '@/components/documents/DocumentCard';
 const Dashboard = () => {
   // TODO: fetch all documents
+  const documents = useQuery(api.documents.getDocuments);
 
   return (
     <div className="relative flex flex-col border border-red-400">
@@ -14,6 +17,19 @@ const Dashboard = () => {
           </div>
           <div>
             <CreateNewDocument />
+          </div>
+          <div>
+            {documents ? (
+              documents.map((doc) => (
+                <DocumentCard
+                  key={doc._id}
+                  documentTitle={doc.documentTitle}
+                  creationTime={doc._creationTime}
+                />
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </section>
       </main>
