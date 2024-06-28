@@ -13,5 +13,5 @@ export interface UploadDocumentProps {
 export interface DocumentCardProps {
   documentTitle: string;
   creationTime: number;
-  // todo : fix type
+  documentUrl: string;
 }

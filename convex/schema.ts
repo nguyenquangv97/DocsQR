@@ -9,6 +9,7 @@ export default defineSchema({
     documentStorageId: v.id('_storage'),
     documentUrl: v.string(),
 
+
     // TODO : add QR Code functionality
     // QRCodeStorageId: v.id('_storage'),
     // QRCodeUrl: v.string(),
