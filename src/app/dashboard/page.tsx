@@ -1,14 +1,21 @@
-'use client'
-import Dashboard from '@/components/dashboard/Dashboard'
-import { Authenticated } from 'convex/react'
-import React from 'react'
-
-const page = () => {
+'use client';
+import { Authenticated, useQuery } from 'convex/react';
+import CreateNewDocument from '../../components/CreateDocument';
+import LeftSideBar from './LeftSideBar';
+import { api } from '../../../convex/_generated/api';
+import Dashboard from '@/components/dashboard/Dashboard';
+const DashboardPage = () => {
+  // TODO: fetch all documents
   return (
     <Authenticated>
-      <Dashboard />
+      <div className="relative flex flex-col border border-red-400">
+        <main className="relative flex">
+          <LeftSideBar />
+          <Dashboard />
+        </main>
+      </div>
     </Authenticated>
-  )
-}
+  );
+};
 
-export default page
+export default DashboardPage;

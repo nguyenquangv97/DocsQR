@@ -53,9 +53,6 @@ export const createDocument = mutation({
 export const getDocuments = query({
   handler: async (ctx) => {
     // Verify that user is authenticated
-    console.log("server identity", await ctx.auth.getUserIdentity());
-
-
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
