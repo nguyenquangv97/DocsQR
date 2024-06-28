@@ -1,20 +1,21 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import UploadDocument from '@/components/UploadDocument';
-import { Card, CardContent } from '@/components/ui/card';
+'use client';
+import { Authenticated, useQuery } from 'convex/react';
 import CreateNewDocument from '../../components/CreateDocument';
-
-const Dashboard = () => {
+import LeftSideBar from './LeftSideBar';
+import { api } from '../../../convex/_generated/api';
+import Dashboard from '@/components/dashboard/Dashboard';
+const DashboardPage = () => {
+  // TODO: fetch all documents
   return (
-    <div className="flex justify-center items-center w-full h-full border border-red-1">
-
-      <CreateNewDocument />
-    </div>
-  )
-  
-  
+    <Authenticated>
+      <div className="relative flex flex-col border border-red-400">
+        <main className="relative flex">
+          <LeftSideBar />
+          <Dashboard />
+        </main>
+      </div>
+    </Authenticated>
+  );
 };
 
-export default Dashboard;
+export default DashboardPage;
