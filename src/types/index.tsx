@@ -15,3 +15,13 @@ export interface DocumentCardProps {
   creationTime: number;
   documentUrl: string;
 }
+
+export interface PdfRendererProps {
+  url: string;
+}
+
+export interface DocumentDetailPageProps {
+  params: {
+    fileid: string;
+  };
+}
