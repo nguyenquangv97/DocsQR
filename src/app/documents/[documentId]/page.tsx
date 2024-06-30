@@ -1,10 +1,13 @@
 import PdfRenderer from '@/components/PdfRenderer';
 import { DocumentDetailPageProps } from '@/types';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import QRCode from 'react-qr-code';
 
 const page = ({ params }: DocumentDetailPageProps) => {
   // TODO: pass in params.documentId to fetch the document
   const file = {
-    url: 'https://quirky-chipmunk-852.convex.cloud/api/storage/0fb6b900-3754-4c95-a9f8-af539fc997bb',
+    url: 'https://marvelous-hummingbird-584.convex.cloud/api/storage/c6458ea9-84b6-4c30-aabd-716a13341d90',
   };
 
   return (
@@ -19,7 +22,7 @@ const page = ({ params }: DocumentDetailPageProps) => {
         </div>
 
         <div className="shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
-          {/* TODO: QR Code */}
+          <QRCode value={file.url} />
         </div>
       </div>
     </div>

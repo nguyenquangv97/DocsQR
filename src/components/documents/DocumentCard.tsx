@@ -1,7 +1,7 @@
 import { DocumentCardProps } from '@/types';
 
-
 const DocumentCard = ({
+  documentId,
   documentTitle,
   creationTime,
   documentUrl,
@@ -14,6 +14,11 @@ const DocumentCard = ({
         <a href={documentUrl} target="_blank" rel="noreferrer">
           <button className="bg-blue-1 text-white rounded-md p-2">
             View Document
+          </button>
+        </a>
+        <a href={`documents/${documentId}`}>
+          <button className="bg-blue-1 text-white rounded-md p-2">
+            QR Code
           </button>
         </a>
         {/*  TODO: docviewer */}

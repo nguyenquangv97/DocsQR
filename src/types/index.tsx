@@ -7,10 +7,11 @@ export interface UserAccountNavProps {
 }
 
 export interface UploadDocumentProps {
-  setDocument: React.Dispatch<React.SetStateAction<File | null>>
+  setDocument: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 export interface DocumentCardProps {
+  documentId: string;
   documentTitle: string;
   creationTime: number;
   documentUrl: string;

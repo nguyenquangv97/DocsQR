@@ -1,4 +1,4 @@
-import { ConvexError, v } from 'convex/values';
+import { ConvexError, convexToJson, v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 import { Id } from './_generated/dataModel';
 export const generateUploadUrl = mutation({
@@ -84,5 +84,11 @@ export const getDocuments = query({
       }
     }
     return documents;
+  },
+});
+
+export const getDocumentById = query({
+  handler: async (ctx) => {
+    const document = await ctx.db.query('documents');
   },
 });
