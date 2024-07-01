@@ -23,6 +23,10 @@ export interface PdfRendererProps {
 
 export interface DocumentDetailPageProps {
   params: {
-    fileid: string;
+    documentId: string;
   };
+}
+
+export interface DocumentDetailProps {
+  documentId: string;
 }

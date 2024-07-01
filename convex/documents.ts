@@ -88,7 +88,43 @@ export const getDocuments = query({
 });
 
 export const getDocumentById = query({
-  handler: async (ctx) => {
-    const document = await ctx.db.query('documents');
+  args: { documentId: v.string() },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new ConvexError('unauthorized');
+    }
+
+    // get the user
+    const user = await ctx.db
+      .query('users')
+      .filter((q) => q.eq(q.field('email'), identity.email))
+      .collect();
+
+    if (user.length === 0) {
+      throw new ConvexError('user not found');
+    }
+
+    const documents = await ctx.db
+      .query('documents')
+      .filter((q) =>
+        q.and(
+          q.eq(q.field('_id'), args.documentId),
+          q.eq(q.field('user'), user[0]._id)
+        )
+      )
+      .collect();
+
+    if (documents) {
+      const documentUrl = await ctx.storage.getUrl(
+        documents[0].documentStorageId
+      );
+      if (documentUrl) {
+        documents[0] = { ...documents[0], documentUrl };
+      }
+    }
+    console.log(documents);
+    return documents[0];
   },
 });
