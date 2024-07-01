@@ -1,7 +1,7 @@
 const authConfig = {
   providers: [
     {
-      domain: 'https://square-macaw-62.clerk.accounts.dev',
+      domain: process.env.CLERK_CONVEX_ISSUER,
       applicationID: 'convex',
     },
   ],
